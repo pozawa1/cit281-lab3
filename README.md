@@ -6,14 +6,36 @@
 3. Practice converting normal functions into arrow function expressions
 4. Examine using for..in  syntax with objects
 5. Practice using for..of syntax with arrays
-6. Practice creating a Node.js compatible code module using module.exports
-7. Practice importing a Node.js compatible code module using require
-8. Examine code using the spread operator
+6. Examine code using the spread operator
 
 ## Technologies Used
 - VSCode
 
 ## Source Code
+### lab-03-module.js
+```
+// TODO Part 9: Add the reverseString function to the module.exports object
+// for import using require()
+
+// TODO Part 10: Add an anonymous function concatenateString that takes a string
+// as a parameter, and returns the original concatenated to itself
+module.exports = {
+    reverseString, 
+    concatenateString: function(inputString) {
+        return inputString + inputString;
+    }
+};
+
+// TODO Part 8: Reference the following website to use the spread operator
+// to reverse the string for reverseString(str) function. Comment out the
+// original return line of code.
+// https://betterprogramming.pub/5-ways-to-reverse-a-string-in-javascript-466f62845827
+function reverseString(str) {
+    return str.split("").reverse().join("");
+}
+```
+
+### lab-03.js
 ```
 // TODO Part 11: Import reverseString() and concatenateString()
 // functions from lab-03-module.js module using require()
@@ -112,3 +134,4 @@ for (const primes of [2,3,5,7,11]) {
 // a single line of code to produce the following output to the console: cbacba
 
 console.log(concatenateString(reverseString("abc")));
+```
