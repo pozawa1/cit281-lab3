@@ -1,37 +1,114 @@
-## Welcome to GitHub Pages
+# Lab 3
 
-You can use the [editor on GitHub](https://github.com/pozawa1/cit281-lab3/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+## Objectives
+1. Practice refactoring JavaScript code to use more modern syntax
+2. Practice destructuring an object
+3. Practice converting normal functions into arrow function expressions
+4. Examine using for..in  syntax with objects
+5. Practice using for..of syntax with arrays
+6. Practice creating a Node.js compatible code module using module.exports
+7. Practice importing a Node.js compatible code module using require
+8. Examine code using the spread operator
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Technologies Used
+- VSCode
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+## Source Code
 ```
+// TODO Part 11: Import reverseString() and concatenateString()
+// functions from lab-03-module.js module using require()
+const { reverseString, concatenateString } = require("./lab-03-module.js");
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+// Declare a specific car object
+let car = {
+    make: "Ford",
+    model: "Mustang",
+    vin: "4S3BMHB68B3286050",
+    color: "Red",
+    year: 2019,
+    mileage: 1234,
+    used: true,
+    owners: [
+        { last: "Last1", first: "First1" },
+        { last: "Last2", first: "First2" }
+    ]
+}
 
-### Jekyll Themes
+// Assign car VIN number and year to constant variables
+// const vin = car.vin;
+// const year = car.year;
+// TODO Part 2: Create vin and year variables using object destructuring
+// Comment out the original code using single line comments
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/pozawa1/cit281-lab3/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+const {vin, year} = car;
 
-### Support or Contact
+// Declare a normal function that returns formatted car info
+function getCarMakeModel(car) {
+    return car.make + " " + car.model;
+}
+console.log(0, getCarMakeModel(car));
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+// TODO Part 3: Create arrow function expression getCarMakeModelImplicit
+// and template literal that returns the same formatted car info as
+// getCarMakeModel(). The arrow function MUST NOT use a return 
+// statement (use implicit return)
+// Include a console.log statement similar to getCarMakeModel,
+// but increment the number from 0 to 1.
+
+const getCarMakeModelImplicit = (car) =>  `${car.make} ${car.model}`;
+console.log(1, getCarMakeModelImplicit(car));
+
+// TODO Part 4: Create arrow function expression getCarMakeModelExplicit
+// and template literal that returns the same formatted car info as
+// getCarMakeModel(). The arrow function MUST use a return 
+// statement (use explicit return)
+// Include a console.log statement similar to getCarMakeModel,
+// but increment the number from 0 to 2.
+
+const getCarMakeModelExplicit = (car) => {
+    return `${car.make} ${car.model}`
+};
+console.log(2, getCarMakeModelExplicit(car));
+
+// TODO Part 5: Create arrow function expression getCarMakeModelDestructure
+// and template literal that returns the same formatted car info as
+// getCarMakeModel(). The arrow function MUST destructure the 
+// car properties, which will also require using an explicit return.
+// Include a console.log statement similar to getCarMakeModel,
+// but increment the number from 0 to 3.
+
+const getCarMakeModelDestructure = (car) => {
+    const {make, model} = car;
+    return `${make} ${model}`
+};
+console.log(3, getCarMakeModelDestructure(car));
+
+// TODO Part 6: Study the following code that will list all 
+// properties of an object using for..in syntax. The
+// listing will include inherited properties, so the
+// hasOwnProperty() method is used to only list properties
+// defined in the current object
+console.log("LINE74");
+for (let prop in car) {
+    if (car.hasOwnProperty(prop)) {
+        console.log(prop);
+    }
+}
+console.log("LINE80");
+
+// Display all values of an array
+const primes = [2,3,5,7,11];
+// for (let index = 0; index < primes.length; index++) {
+//    console.log(primes[index]);
+// }
+// TODO Part 7: Display all array values using for..of syntax
+// Comment out the original for loop code using single line comments
+
+for (const primes of [2,3,5,7,11]) {
+    console.log(primes)
+}
+
+// TODO Part 12: Import and use reverseString() and concatenateString() in
+// a single line of code to produce the following output to the console: cbacba
+
+console.log(concatenateString(reverseString("abc")));
